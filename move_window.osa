@@ -1,0 +1,14 @@
+" Ironically if we attempt to set the *position* of the window,
+" we are either required to authenticate or we get an error, eg:
+" set position of first window of application process "System Preferences" to {100, 100}
+" 31:114: execution error: System Events got an error: osascript is not allowed assistive access. (-1719)
+"
+" Additionally, running `networkscript` from the command line also requires authority.
+"
+" We evade this by changing hte *bounds* of the window, and ultimately placing it in
+" a location that we know we can access by strategically manipulating the mouse.
+
+tell application "System Events"
+	set pwnBounds to {0, 0, 700, 700}
+	set bounds of window "System Preferences" of application "System Preferences" to pwnBounds
+end tell
