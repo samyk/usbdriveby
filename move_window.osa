@@ -5,7 +5,7 @@
 #
 # Additionally, running `networkscript` from the command line also requires authority.
 #
-# We evade this by changing hte *bounds* of the window, and ultimately placing it in
+# We evade this by changing the *bounds* of the window, and ultimately placing it in
 # a location that we know we can access by strategically manipulating the mouse.
 
 tell application "System Events"

