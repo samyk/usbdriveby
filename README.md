@@ -20,6 +20,7 @@ I often wear a microcontroller around my neck, and have a few for a few differen
 Specifically, when you normally plug in a mouse or keyboard into a machine, no authorization is required. The devices can simply begin typing. We exploit this fact by sending arbitrary keystrokes meant to launch specific applications, permanently evade a local firewall, install a reverse shell, and even modify DNS settings 
 
 We even evade OS X's security - while they attempt to prevent network changes being done by just a "keyboard", and even prevent most applications from moving windows to specific locations, we evade both of these with some unprotected applescript and carefully planned mouse movements.
+
 ![http://samy.pl/usbdriveby/driveby.jpg](http://samy.pl/usbdriveby/driveby.jpg)
 
 
