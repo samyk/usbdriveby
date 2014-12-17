@@ -2,26 +2,30 @@
 
 **USBdriveby** is a device you stylishly wear around your neck which can quickly and covertly install a backdoor and override DNS settings on an unlocked machine via USB in a matter of seconds. It does this by emulating a keyboard and mouse, blindly typing controlled commands, flailing the mouse pointer around and weaponizing mouse clicks.
 
-In this project, we'll learn how to exploit a system's blind trust in USB devices, and learn how a $20 Teensy microcontroller can evade various security settings on a real system, open a permanent backdoor, control the flow of network traffic, and all within a few seconds and permanently, even after the device has been removed.
+In this project, we'll learn how to exploit a system's blind trust in USB devices, and learn how a $20 Teensy microcontroller can evade various security settings on a real system, open a permanent backdoor, disable a firewall, control the flow of network traffic, and all within a few seconds and permanently, even after the device has been removed.
 
 by [@SamyKamkar](https://twitter.com/samykamkar) // <code@samy.pl> // <http://samy.pl> // Dec 17, 2014
 
 Code available on [github](https://github.com/samyk/usbdriveby)
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=nlM2D8qCg-E
-" target="_blank"><img src="http://img.youtube.com/vi/nlM2D8qCg-E/0.jpg" alt="USBdriveby" width="640" height="480" border="10" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=4aRw0FYdf_4
+" target="_blank"><img src="http://img.youtube.com/vi/4aRw0FYdf_4/0.jpg" alt="USBdriveby" width="640" height="480" border="10" /></a>
 
 ------
 
 # Overview
 
-I often wear a microcontroller around my neck, and have a few for a few different fun tasks. One that's more interesting is this, USBdriveby, which emulates a keyboard and mouse when plugged into a machine, exploiting the blind trust machines give USB devices.
+I often wear a microcontroller around my neck, and have a few for a various fun tasks. One that's more interesting is this, USBdriveby, which emulates a keyboard and mouse when plugged into a machine, exploiting the blind trust machines give USB devices.
 
-Specifically, when you normally plug in a mouse or keyboard into a machine, no authorization is required. The devices can simply begin typing. We exploit this fact by sending arbitrary keystrokes meant to launch specific applications, permanently evade a local firewall, install a reverse shell, and even modify DNS settings 
+Specifically, when you normally plug in a mouse or keyboard into a machine, no authorization is required to begin using them. The devices can simply begin typing and clicking. We exploit this fact by sending arbitrary keystrokes meant to launch specific applications (via Spotlight/Alfred/Quicksilver), permanently evade a local firewall (Little Snitch), install a reverse shell in crontab, and even modify DNS settings without any additional permissions.
 
-We even evade OS X's security - while they attempt to prevent network changes being done by just a "keyboard", and even prevent most applications from moving windows to specific locations, we evade both of these with some unprotected applescript and carefully planned mouse movements.
+While this example is on OS X, it is easily extendable to Windows and *nix.
+
+We even evade OS X's security - while they attempt to prevent network changes being done by just a "keyboard", and even prevent most applications from changing position (special authorized accessibility features must be enabled which we don't have authorization for), we evade both of these with some unprotected applescript and carefully planned mouse movements.
 
 ![http://samy.pl/usbdriveby/driveby.jpg](http://samy.pl/usbdriveby/driveby.jpg)
+
+If you haven't checked out [BadUSB](https://srlabs.de/badusb/), please do. The awesome [Karsten Nohl](http://www.cs.virginia.edu/~kn5f/) and the srlabs team have developed some much more advanced methods of USB pwnage and have demonstrated this, though they have not released any code.                                                              
 
 
 ------
@@ -37,6 +41,9 @@ I've written it for both Teensy and Arduino microcontrollers, however not all Ar
 I've created a DNS server which responds to normal DNS requests properly, however sends spoofed answers for specific hostnames. This runs on a remote host and allows us to manipulate the traffic of the system that's been hit by USBdriveby.
 
 This is also available on my github: <https://github.com/samyk/usbdriveby>
+
+### Net::DNS
+My DNS spoofer depends on the [Net::DNS](http://www.net-dns.org/) suite of perl modules.
 
 ### perl backdoor
 We use a perl backdoor I developed as virtually all OS X and *nix machines have perl installed by default. You'll find many of these systems don't come with a C compiler, especially in the bare bones version, but perl is always quietly available.
