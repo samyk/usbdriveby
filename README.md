@@ -21,7 +21,7 @@ Specifically, when you normally plug in a mouse or keyboard into a machine, no a
 
 While this example is on OS X, it is easily extendable to Windows and *nix.
 
-We even evade OS X's security - while they attempt to prevent network changes being done by just a "keyboard", and even prevent most applications from changing position (special authorized accessibility features must be enabled which we don't have authorization for), we evade both of these with some unprotected applescript and carefully planned mouse movements.
+We even evade OS X's security - while they attempt to prevent network changes being done by just a "keyboard", and even prevent most applications from changing position (special authorized accessibility features must be enabled which we don't have authorization for), we evade both of these with some unprotected applescript and carefully planned mouse movements. While a device like Rubber Ducky is similar, it's unable to mount the same attacks as it lacks HID Mouse emulation.
 
 If you haven't checked out [BadUSB](https://srlabs.de/badusb/), please do. The awesome [Karsten Nohl](http://www.cs.virginia.edu/~kn5f/) and the srlabs team have developed some much more advanced methods of USB pwnage and have demonstrated this, though they have not released any code.
 
