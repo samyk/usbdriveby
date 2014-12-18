@@ -111,7 +111,7 @@ Ironically, the Little Snitch firewall conveniently allows you to use keyboard s
 
 ![http://samy.pl/usbdriveby/snitch.jpg](http://samy.pl/usbdriveby/snitch.jpg)
 
-If the user does **not** have Little Snitch installed, we want to avoid hitting the up arrow in Terminal as we may accidentally launch a previous command, so we can also send a Cmd+C to "kill" the current line in Terminal, where Cmd+C does nothing in the Little Snitch modal.
+If the user does **not** have Little Snitch installed, we want to avoid hitting the up arrow in Terminal as we may accidentally launch a previous command, so we can also send a Ctrl+C to "kill" the current line in Terminal, where Ctrl+C does nothing in the Little Snitch modal.
 
 ```
   // move our keyboard using the arrow keys to allow this host permanently ;)
@@ -122,11 +122,11 @@ If the user does **not** have Little Snitch installed, we want to avoid hitting 
   k(KEY_LEFT);
   k(KEY_LEFT);
 
-  // go to beginning of line if there's no little snitch (CMD+A) 
+  // go to beginning of line if there's no little snitch (Ctrl+A)
   // since we would still be in terminal
-  ctrl(KEY_A);  // go to beginning of line (cmd+a)
+  ctrl(KEY_A);  // go to beginning of line (Ctrl+a)
   shift(KEY_3); // add a # (shift+3)
-  ctrl(KEY_C);  // ^C to exit line (cmd+c)
+  ctrl(KEY_C);  // ^C to exit line (Ctrl+c)
 
   k(KEY_ENTER); // submit little snitch
 ```

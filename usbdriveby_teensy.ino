@@ -238,11 +238,11 @@ void pwnLittleSnitch()
   k(KEY_LEFT);
   k(KEY_LEFT);
 
-  // go to beginning of line if there's no little snitch (CMD+A) 
+  // go to beginning of line if there's no little snitch (Ctrl+A)
   // since we would still be in terminal
-  ctrl(KEY_A);  // go to beginning of line (cmd+a)
+  ctrl(KEY_A);  // go to beginning of line (Ctrl+a)
   shift(KEY_3); // add a # (shift+3)
-  ctrl(KEY_C);  // ^C to exit line (cmd+c)
+  ctrl(KEY_C);  // ^C to exit line (Ctrl+c)
 
   k(KEY_ENTER); // submit little snitch
   delay(ds);
