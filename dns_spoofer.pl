@@ -15,6 +15,12 @@
 use strict;
 use Net::DNS::Nameserver;
 
+# ip to bind dns server to
+my $BINDIP = "127.0.0.1"; 
+
+# port to bind dns server to (< 1024 requires root)
+my $BINDPORT = 53;
+
 # hosts to spoof, or add them to /etc/hosts
 my %spoof = (
 	'paypal.com' => '72.14.179.47',
@@ -82,8 +88,8 @@ sub reply_handler
 }
 
 my $ns = new Net::DNS::Nameserver(
-		LocalPort    => 5354,
-		LocalAddr		 => '127.0.0.1',
+		LocalPort    => $BINDPORT,
+		LocalAddr		 => $BINDIP,
 		ReplyHandler => \&reply_handler,
 		Verbose      => 1
 ) || die "couldn't create nameserver object\n";
