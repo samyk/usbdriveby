@@ -19,6 +19,11 @@ int ds = 500;
 #define LED_PIN 13
 #endif
 
+// Choose if you want to have the Teensy submit Little Snitch with the mouse, or the keyboard.
+// Comment out the one you don't want to use.
+#define USE_KEYBOARD
+// #define USE_MOUSE
+
 void setup()
 {
   // give us a little time to connect up
@@ -240,42 +245,47 @@ void pwnLittleSnitch()
   shift(KEY_3); // add a # (shift+3)
   ctrl(KEY_C);  // ^C to exit line (Ctrl+c)
   
-  // If you want to use a mouse to submit, or Little Snitch changes so it forces you manually clicking it, 
-  // uncomment the below lines, and comment the "cmd(KEY_ENTER);" line.
+// Here is where we decide if we want to use a keyboard or mouse to submit Little Snitch.
   
-  //		 Move to top left of screen
-  //		for (int i = 0; i < 1000; i++)
-  //		{
-  //		Mouse.move(-10, -10);
-  //		delay(1);
-  //		}
+#ifdef USE_MOUSE
 
-		// If we have hot corners enabled, move out and move back in
-  //		for (int i = 0; i < 100; i++)
-  //		{
-  //		 Mouse.move(1, 1);
-  //		delay(5);
-  //		}
-  //		delay(500);
+  // Move to top left of screen
+   for (int i = 0; i < 1000; i++)
+  {
+    Mouse.move(-10, -10);
+    delay(1);
+  }
 
-  //		for (int i = 0; i < 100; i++)
-  //		{
-  //		Mouse.move(-1, -1);
-  //		delay(5);
-  //		}
-  //		delay(500);
+  // If we have hot corners enabled, move out and move back in
+  for (int i = 0; i < 100; i++)
+  {
+    Mouse.move(1, 1);
+    delay(5);
+  }
+  delay(500);
 
-		// move to Little Snitch Allow button
-  //		Mouse.move(100, 100);
-  //		delay(20);
-  //		Mouse.move(100, 100);
-  //		delay(20);
-  //		Mouse.move(120, -70);
+  for (int i = 0; i < 100; i++)
+  {
+    Mouse.move(-1, -1);
+    delay(5);
+  }
+  delay(500);
 
-  //		delay(1000);
-  //		Mouse.click(); // Click click!
+  // move to Little Snitch Allow button
+  Mouse.move(100, 100);
+  delay(20);
+  Mouse.move(100, 100);
+  delay(20);
+  Mouse.move(120, -70);
 
-  cmd(KEY_ENTER); // submit little snitch 
+  delay(1000);
+  Mouse.click(); // Click click!
+  delay(ds);
+}
+
+#else
+	cmd(KEY_ENTER); // submit little snitch with keyboard.
+#endif
   delay(ds);
 }
 
