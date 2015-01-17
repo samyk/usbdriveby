@@ -264,13 +264,6 @@ void pwnLittleSnitch()
   }
   delay(500);
 
-  for (int i = 0; i < 100; i++)
-  {
-    Mouse.move(-1, -1);
-    delay(5);
-  }
-  delay(500);
-
   // move to Little Snitch Allow button
   Mouse.move(100, 100);
   delay(20);
