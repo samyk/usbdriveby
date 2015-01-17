@@ -20,9 +20,8 @@ int ds = 500;
 #endif
 
 // Choose if you want to have the Teensy submit Little Snitch with the mouse, or the keyboard.
-// Comment out the one you don't want to use.
+// Uncomment USE_KEYBOARD to use the mouse.
 #define USE_KEYBOARD
-// #define USE_MOUSE
 
 void setup()
 {
