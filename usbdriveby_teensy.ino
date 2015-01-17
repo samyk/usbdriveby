@@ -244,8 +244,7 @@ void pwnLittleSnitch()
   shift(KEY_3); // add a # (shift+3)
   ctrl(KEY_C);  // ^C to exit line (Ctrl+c)
   
-// Here is where we decide if we want to use a keyboard or mouse to submit Little Snitch.
-  
+// Here is where we submit Little Snitch with either a keyboard or mouse, based on what you selected above.
 #ifdef USE_MOUSE
 
   // Move to top left of screen
