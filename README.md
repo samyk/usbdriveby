@@ -9,7 +9,7 @@ by [@SamyKamkar](https://twitter.com/samykamkar) // <code@samy.pl> // <http://sa
 Code available on [github](https://github.com/samyk/usbdriveby)
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=aSLEq7-hlmo
-" target="_blank"><img src="http://img.youtube.com/vi/aSLEq7-hlmo/0.jpg" alt="USBdriveby" width="640" height="480" border="10" /></a>
+" target="_blank"><img src="http://img.youtube.com/vi/aSLEq7-hlmo/0.jpg?" alt="USBdriveby" width="640" height="480" border="10" /></a>
 
 ------
 
