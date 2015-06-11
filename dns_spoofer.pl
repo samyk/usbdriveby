@@ -51,6 +51,12 @@ my $resolver = new Net::DNS::Resolver(
 	recurse => 1,
 );
 
+sub uniq
+{
+    my %seen;
+    grep !$seen{$_}++, @_;
+}
+
 sub reply_handler
 {
 	my ($qname, $qclass, $qtype, $peerhost,$query,$conn) = @_;
@@ -72,10 +78,14 @@ sub reply_handler
 	# look up a real host and respond appropriately
 	else
 	{
-		my $ret = $resolver->search($qname, $qtype);
-		if ($ret && $ret->{answer})
+		my $ret = $resolver->search($qname);
+		if ($ret)
 		{
-			push @ans, @{$ret->{answer}};
+			foreach my $rr ($ret->answer)
+			{
+				next unless $rr->type eq "A";
+    			push @ans, @{$ret->{answer}};
+    		}
 		}
 		else
 		{
@@ -84,6 +94,7 @@ sub reply_handler
 	}
 
 	# mark the answer as authoritive by setting the 'aa' flag
+	@ans = uniq(@ans);
 	return ($err, \@ans, \@auth, \@add, { aa => 1 });
 }
 
