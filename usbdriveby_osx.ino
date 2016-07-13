@@ -1,5 +1,7 @@
 // USBdriveby, by samy kamkar
-// http://samy.pl/usbdriveby
+// This is the OS X version. Windows version is in usbdriveby_windows.ino
+//
+// https://samy.pl/usbdriveby
 
 // in order to listen for the backdoor installed, simply run netcat:
 // nc -l 1337
