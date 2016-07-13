@@ -1,6 +1,8 @@
 
 // USBdriveby Windows version by FFY00 (Filipe Laíns)
 // Based on Samy Kamkar work
+//
+// https://github.com/samyk/usbdriveby
 
 // Simulates a HID keyboard and runa bash file to change the dns server
 // Tested on Windows 7
